@@ -1,0 +1,41 @@
+/*
+ * Design tokens — sourced directly from Figma file "While You're Up — Design"
+ * (fileKey 4DgEdesJbAXD0QEsbEUUnP): Brand Overview (node 0:1) + Design System
+ * (node 56:2) pages. Do not hand-edit values here without checking Figma first.
+ */
+
+:root {
+  /* Color primitives */
+  --color-forest-dark: #2C3322;   /* primary brand / headings */
+  --color-sage-green: #9BA383;    /* secondary actions */
+  --color-warm-tan: #CFA779;      /* accent / alerts / spotlight */
+  --color-cream-base: #FAF8F5;    /* background */
+  --color-neutral-dark: #1E2215;  /* body text */
+  --color-neutral-light: #F1F2ED; /* borders / dividers */
+  --color-surface: #FFFFFF;
+
+  /* Type */
+  --font-display: 'Fraunces', serif;        /* headlines, lowercase wordmark styling */
+  --font-body: 'Instrument Sans', sans-serif;
+
+  --text-display: clamp(2.5rem, 5vw, 3.5rem);  /* Figma Display: Fraunces 32px, scaled up for a marketing hero */
+  --text-heading: clamp(1.5rem, 3vw, 2rem);    /* Figma Heading: Fraunces 24px */
+  --text-subhead: 1.25rem;                     /* Figma Subhead: Instrument Sans SemiBold 20px */
+  --text-body: 0.875rem;                       /* Figma Body: Instrument Sans Regular 14px */
+  --text-caption: 0.75rem;                     /* Figma Caption: 12px */
+  --text-overline: 0.6875rem;                  /* Figma Overline: Bold 11px, all caps */
+
+  /* Spacing — Figma's 8px grid */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+
+  /* Radii — Figma Radii & Spacing board */
+  --radius-small: 8px;
+  --radius-medium: 16px;
+  --radius-large: 32px;
+  --radius-full: 999px;
+}

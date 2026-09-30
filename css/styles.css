@@ -1,0 +1,541 @@
+/* Layout & components — built on tokens.css (Figma-sourced values only). */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light; /* mirrors the <meta name="color-scheme"> in index.html */
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream-base);
+  color: var(--color-neutral-dark);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--color-forest-dark);
+  margin: 0;
+  line-height: 1.15;
+}
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50; /* explicit stacking so it renders above the hero's sticky phone, regardless of DOM order */
+  padding: var(--space-2) 0;
+  background: var(--color-cream-base);
+  border-bottom: 1px solid rgba(44, 51, 34, 0.08);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+  padding: 6px 0; /* brings the tap target closer to the 44px touch-target minimum (was 32px) */
+}
+
+.brand img {
+  width: 32px;
+  height: auto;
+  display: block;
+}
+
+.brand span {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-forest-dark);
+}
+
+/* Hero */
+.hero {
+  padding: var(--space-4) 0 var(--space-6);
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--color-neutral-light);
+  color: var(--color-forest-dark);
+  font-size: var(--text-overline);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-2);
+}
+
+.hero h1 {
+  font-size: var(--text-display);
+  font-weight: 600;
+}
+
+.hero .subhead {
+  margin-top: var(--space-2);
+  font-size: var(--text-subhead);
+  color: var(--color-neutral-dark);
+  opacity: 0.85;
+  max-width: 44ch;
+}
+
+/* Rolling message carousel — one chat-style pill visible at a time,
+   sized noticeably smaller than the headline (italic "Brand Personality"
+   Fraunces style from the brand board, but a lighter touch) directly
+   below it. Each pill fades + slides in, holds, then fades + slides
+   out, staggered by animation-delay so exactly one is ever visible.
+   Purely decorative/ambient (aria-hidden), CSS-only, and paused (first
+   message shown static) for reduced-motion. */
+.message-carousel {
+  position: relative;
+  min-height: 70px; /* fits one line at this type size; grows for wrapped text at larger text sizes instead of clipping it */
+  margin: var(--space-1) 0 var(--space-4);
+}
+
+.message-bubble {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-neutral-light);
+  border-radius: var(--radius-large);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.875rem, 2.2vw, 1.375rem);
+  line-height: 1.3;
+  color: var(--color-forest-dark);
+  width: max-content;
+  max-width: 100%;
+  /* No white-space:nowrap: at larger browser/OS text sizes this must be
+     allowed to wrap instead of overflowing the viewport unreadably
+     (WCAG 1.4.4/1.4.10). It still renders on one line at normal sizes
+     because the pill hugs its content width. */
+  opacity: 0;
+  transform: translateY(calc(-50% + 10px));
+  animation: message-fade-cycle 20s ease-in-out infinite;
+}
+
+.message-bubble:nth-child(1) { animation-delay: 0s; }
+.message-bubble:nth-child(2) { animation-delay: 4s; }
+.message-bubble:nth-child(3) { animation-delay: 8s; }
+.message-bubble:nth-child(4) { animation-delay: 12s; }
+.message-bubble:nth-child(5) { animation-delay: 16s; }
+
+@keyframes message-fade-cycle {
+  0%   { opacity: 0; transform: translateY(calc(-50% + 10px)); }
+  4%   { opacity: 1; transform: translateY(-50%); }
+  16%  { opacity: 1; transform: translateY(-50%); }
+  20%  { opacity: 0; transform: translateY(calc(-50% - 10px)); }
+  100% { opacity: 0; transform: translateY(calc(-50% - 10px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .message-bubble { animation: none; opacity: 0; }
+  .message-bubble:first-child { opacity: 1; transform: translateY(-50%); }
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+/* Scroll-driven phone mockup — a tall track wrapping the whole hero row.
+   Scrolling through the track drives the app screenshot's internal scroll
+   (via JS translateY in phone-scroll.js) while the hero copy + phone stay
+   pinned together; once the content is fully revealed, they unstick and
+   the page continues normally into the next section. */
+.phone-scroll-track {
+  position: relative;
+  width: 100%;
+}
+
+.phone-sticky {
+  position: sticky;
+  /* --header-h is measured and kept in sync by phone-scroll.js, so the
+     sticky phone/copy never sit partly behind the fixed header. */
+  top: calc(12vh + var(--header-h, 64px));
+}
+
+
+.iphone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 430 / 932; /* iPhone 17 Pro Max screen proportions */
+  background: linear-gradient(155deg, #f3f3f1 0%, #e2e2e0 45%, #f5f5f3 100%); /* silver/titanium finish, calmer than a black frame */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 50px;
+  padding: 12px;
+  box-shadow: 0 30px 60px -20px rgba(30, 34, 21, 0.3);
+}
+
+.iphone-dynamic-island {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  height: 3.2%;
+  background: #000; /* always black on-device, regardless of finish */
+  border-radius: 999px;
+  z-index: 3;
+}
+
+.iphone-side-button {
+  position: absolute;
+  background: #d6d6d4;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+}
+
+.iphone-action-button {
+  left: -3px;
+  top: 15%;
+  width: 3px;
+  height: 3.5%;
+  border-radius: 2px 0 0 2px;
+}
+
+.iphone-volume-up, .iphone-volume-down {
+  left: -3px;
+  width: 3px;
+  height: 7%;
+  border-radius: 2px 0 0 2px;
+}
+
+.iphone-volume-up { top: 21%; }
+.iphone-volume-down { top: 30%; }
+
+.iphone-power-button {
+  right: -3px;
+  top: 22%;
+  width: 3px;
+  height: 10%;
+  border-radius: 0 2px 2px 0;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 38px;
+  background: var(--color-cream-base);
+}
+
+.iphone-status-bar,
+.iphone-bottom-nav {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.iphone-status-bar { top: 0; }
+
+.iphone-bottom-nav {
+  bottom: 0;
+  /* Padding (not a bottom offset) lifts the pill off the screen's rounded
+     corner while the background fills that strip — otherwise scrolling
+     content would show through the gap left underneath the nav image. */
+  box-sizing: border-box;
+  padding-bottom: 2.5%;
+  background: var(--color-cream-base);
+}
+
+.iphone-content {
+  position: absolute;
+  top: 6.6%; /* matches the status bar's proportional height */
+  left: 0;
+  width: 100%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  backface-visibility: hidden; /* keeps this pinned to its own compositor layer on iOS Safari instead of re-promoting mid-scroll */
+}
+
+/* Signup form */
+.signup-form {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  max-width: 420px;
+}
+
+.signup-form input[type="email"] {
+  flex: 1;
+  padding: var(--space-2);
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-neutral-light);
+  background: var(--color-surface);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-neutral-dark);
+}
+
+.signup-form input[type="email"]:focus {
+  outline: 2px solid var(--color-sage-green);
+  outline-offset: 1px;
+}
+
+.signup-form button {
+  background: var(--color-forest-dark);
+  color: var(--color-cream-base);
+  border: none;
+  border-radius: var(--radius-medium);
+  padding: 0 var(--space-3);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.signup-form button:hover { background: var(--color-neutral-dark); }
+.signup-form button:disabled { opacity: 0.6; cursor: default; }
+
+.form-message {
+  min-height: 1.4em;
+  margin-top: var(--space-1);
+  font-size: var(--text-caption);
+  color: var(--color-forest-dark);
+}
+
+.form-message.is-error { color: #a1462f; }
+
+.trust-line {
+  margin-top: var(--space-1);
+  font-size: var(--text-caption);
+  color: var(--color-neutral-dark);
+  opacity: 0.68; /* 0.6 measured ~4.25:1 against cream, just under WCAG AA's 4.5:1 for normal text */
+}
+
+.success-state {
+  max-width: 420px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-neutral-light);
+  border-radius: var(--radius-medium);
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.success-state h2,
+.success-state h3 {
+  font-size: var(--text-heading);
+}
+
+.success-state p {
+  margin: var(--space-1) 0 0;
+  opacity: 0.8;
+}
+
+/* Feature grid — a light tinted band (echoes the households band's
+   divided-column structure below it, without repeating its dark green),
+   with icon/type sizing matched to the households section: larger
+   circular badges instead of small rounded-square icons, and hairline
+   dividers instead of individual boxed cards. */
+.features {
+  background: var(--color-neutral-light);
+  padding: var(--space-6) 0;
+}
+
+.features h2 {
+  font-size: var(--text-heading);
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+/* Divider lines are the 1px grid gap showing through (background on the
+   grid, card background painted over it) — this keeps every line the
+   same length and continuous, unlike per-card borders which only span
+   that card's own box and break across the row gap. */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(44, 51, 34, 0.14);
+}
+
+.feature-card {
+  background: var(--color-neutral-light);
+  padding: var(--space-4);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.feature-icon img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.feature-card h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-neutral-dark);
+}
+
+.feature-card p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-body);
+  opacity: 0.75;
+}
+
+/* Target households — an inverse (dark) band to visually break from the
+   light feature-card grid above: columns separated by hairline dividers
+   rather than repeating the boxed white-card pattern. */
+.households {
+  background: var(--color-forest-dark);
+  padding: var(--space-6) 0;
+}
+
+.households h2 {
+  font-size: var(--text-heading);
+  text-align: center;
+  color: var(--color-cream-base);
+  margin-bottom: var(--space-5);
+}
+
+.household-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.household-item {
+  padding: 0 var(--space-4);
+}
+
+.household-item + .household-item {
+  border-left: 1px solid rgba(250, 248, 245, 0.18);
+}
+
+.household-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.household-icon img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.household-icon-sage { background: var(--color-sage-green); }
+.household-icon-tan { background: var(--color-warm-tan); }
+.household-icon-cream { background: var(--color-cream-base); }
+
+.household-item h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-cream-base);
+}
+
+.household-item p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-body);
+  color: var(--color-cream-base);
+  opacity: 0.72;
+}
+
+/* Secondary CTA */
+.cta-secondary {
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+.cta-secondary h2 {
+  font-size: var(--text-heading);
+  margin-bottom: var(--space-2);
+}
+
+.cta-secondary .signup-form,
+.cta-secondary .success-state {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Footer */
+.site-footer {
+  padding: var(--space-4) 0 var(--space-6);
+  border-top: 1px solid var(--color-neutral-light);
+  text-align: center;
+  color: var(--color-neutral-dark);
+  opacity: 0.6;
+  font-size: var(--text-caption);
+}
+
+@media (max-width: 860px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual { order: -1; }
+  .iphone-frame { max-width: 240px; margin: 0 auto; }
+
+  .feature-grid { grid-template-columns: 1fr; }
+  .feature-card { padding: var(--space-4) 0; }
+
+  .household-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+  .household-item { padding: 0; }
+  .household-item + .household-item {
+    border-left: none;
+    border-top: 1px solid rgba(250, 248, 245, 0.18);
+    padding-top: var(--space-4);
+  }
+
+  .signup-form { flex-direction: column; }
+  .signup-form button { padding: var(--space-2); }
+}

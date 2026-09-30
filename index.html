@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- The page is light-only by design (the phone mockup is a light-mode
+       screenshot); this tells browsers not to auto-dark-mode native
+       controls/scrollbars to match OS dark mode, which would clash with
+       our explicit colors. A real dark theme would need a matching dark
+       Figma export for the hero screenshot — see README. -->
+  <meta name="color-scheme" content="light" />
+  <title>while you're up: a single app to manage it all.</title>
+  <meta name="description" content="while you're up brings chores, kids, pets, supplies, and subscriptions into one shared home base. Join the waitlist." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/tokens.css?v=16" />
+  <link rel="stylesheet" href="css/styles.css?v=16" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <img src="assets/logo-mark.svg" alt="" />
+        <span>while you're up</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="phone-scroll-track" data-phone-track>
+        <div class="phone-sticky">
+          <div class="wrap">
+            <div class="hero-copy">
+              <span class="badge">coming soon to iOS</span>
+              <h1>while you're up&hellip;</h1>
+
+              <div class="message-carousel" aria-hidden="true">
+                <p class="message-bubble">Can you feed the cat</p>
+                <p class="message-bubble">Can you take the bin out</p>
+                <p class="message-bubble">Can you pick Maya up from school</p>
+                <p class="message-bubble">Cancel that free trial before we get charged</p>
+                <p class="message-bubble">Can you grab more dishwasher tablets</p>
+              </div>
+
+              <p class="subhead">A single app to manage it all.</p>
+
+              <div data-waitlist-block>
+                <form data-waitlist-form class="signup-form">
+                  <label for="email" class="sr-only">Email</label>
+                  <input type="email" id="email" name="email" required placeholder="you@example.com" data-waitlist-email autocomplete="email" />
+                  <input type="text" name="company" tabindex="-1" autocomplete="off" data-waitlist-honeypot
+                         style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true" />
+                  <button type="submit" data-waitlist-submit>Join the waitlist</button>
+                </form>
+                <p class="form-message" data-waitlist-message role="status"></p>
+                <p class="trust-line">No spam. One email when we launch.</p>
+
+                <div class="success-state" data-waitlist-success hidden>
+                  <h2>you're on the list</h2>
+                  <p>we'll email you the moment while you're up is available.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="iphone-frame">
+                <div class="iphone-dynamic-island"></div>
+                <div class="iphone-side-button iphone-action-button"></div>
+                <div class="iphone-side-button iphone-volume-up"></div>
+                <div class="iphone-side-button iphone-volume-down"></div>
+                <div class="iphone-side-button iphone-power-button"></div>
+                <div class="iphone-screen" data-phone-viewport>
+                  <img class="iphone-status-bar" src="assets/status-bar.png" alt="" />
+                  <img class="iphone-content" src="assets/hero-content-scroll.png"
+                       alt="while you're up app home screen showing due today and overdue tasks, upcoming events, up for grabs, approvals, running low supplies, renewing subscriptions, and kids' points"
+                       data-phone-content />
+                  <img class="iphone-bottom-nav" src="assets/bottom-nav.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="wrap">
+        <h2>everything your household needs, in one place.</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-chores.svg" alt="" /></div>
+            <h3>Chores &amp; tasks</h3>
+            <p>Assign it, claim it, done. Everyone can see what's due and what's up for grabs.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-points.svg" alt="" /></div>
+            <h3>Kids' points</h3>
+            <p>Kids earn points for pulling their weight. Parents approve, everyone stays honest.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-pets.svg" alt="" /></div>
+            <h3>Pets</h3>
+            <p>Feeding, walks, and vet visits, tracked right alongside everything else.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-supplies.svg" alt="" /></div>
+            <h3>Supplies</h3>
+            <p>Running low on paper towels? We'll flag it before you actually run out.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-subscriptions.svg" alt="" /></div>
+            <h3>Subscriptions</h3>
+            <p>Cancel free trials before they charge you, and see what's renewing at a glance.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img src="assets/icons/icon-household.svg" alt="" /></div>
+            <h3>Household sync</h3>
+            <p>One shared view for the whole house: no more "wait, who's doing that?"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="households">
+      <div class="wrap">
+        <h2>built for every kind of home.</h2>
+        <div class="household-grid">
+          <div class="household-item">
+            <div class="household-icon household-icon-sage"><img src="assets/icons/icon-families.svg" alt="" /></div>
+            <h3>Families</h3>
+            <p>Coordinate school runs, chores, and the whole household from one place.</p>
+          </div>
+          <div class="household-item">
+            <div class="household-icon household-icon-tan"><img src="assets/icons/icon-couples.svg" alt="" /></div>
+            <h3>Couples</h3>
+            <p>Split the mental load of running a home together, fairly and clearly.</p>
+          </div>
+          <div class="household-item">
+            <div class="household-icon household-icon-cream"><img src="assets/icons/icon-housemates.svg" alt="" /></div>
+            <h3>Housemates</h3>
+            <p>Keep shared chores and supplies simple. No awkward reminders needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-secondary">
+      <div class="wrap">
+        <h2>be first to know when we launch.</h2>
+
+        <div data-waitlist-block>
+          <form data-waitlist-form class="signup-form">
+            <label for="email-2" class="sr-only">Email</label>
+            <input type="email" id="email-2" name="email" required placeholder="you@example.com" data-waitlist-email autocomplete="email" />
+            <input type="text" name="company" tabindex="-1" autocomplete="off" data-waitlist-honeypot
+                   style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true" />
+            <button type="submit" data-waitlist-submit>Join the waitlist</button>
+          </form>
+          <p class="form-message" data-waitlist-message role="status"></p>
+
+          <div class="success-state" data-waitlist-success hidden>
+            <h3>you're on the list</h3>
+            <p>we'll email you the moment while you're up is available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>while you're up: a single app to manage it all.</p>
+      <p>&copy; 2026 while you're up</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/phone-scroll.js?v=5"></script>
+</body>
+</html>
