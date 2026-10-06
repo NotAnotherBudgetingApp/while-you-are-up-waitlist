@@ -514,8 +514,41 @@ a { color: inherit; }
   border-top: 1px solid var(--color-neutral-light);
   text-align: center;
   color: var(--color-neutral-dark);
-  opacity: 0.6;
   font-size: var(--text-caption);
+}
+
+/* Opacity lives on the text only (not the whole footer) so the social
+   icons stay full-strength; 0.68 also clears WCAG AA contrast, which the
+   old footer-wide 0.6 did not. */
+.footer-text {
+  margin: 0;
+  opacity: 0.68;
+}
+
+.social-links {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px; /* 44px minimum touch target */
+  border-radius: 50%;
+  color: var(--color-forest-dark);
+  transition: background-color 0.15s ease;
+}
+
+.social-links a:hover { background: var(--color-neutral-light); }
+.social-links a:focus-visible {
+  outline: 2px solid var(--color-sage-green);
+  outline-offset: 2px;
 }
 
 @media (max-width: 860px) {
