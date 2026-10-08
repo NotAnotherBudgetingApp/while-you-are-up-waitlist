@@ -26,7 +26,7 @@ Then open `http://localhost:8000`.
 ## Design source
 
 - Colors: Forest Dark `#2C3322`, Sage Green `#9BA383`, Warm Tan `#CFA779`, Cream Base `#FAF8F5`, Neutral Dark `#1E2215`, Neutral Light `#F1F2ED`.
-- Type: Fraunces (display/headings) + Instrument Sans (body/UI), loaded via Google Fonts.
+- Type: Fraunces (display/headings) + Instrument Sans (body/UI), self-hosted from `fonts/` (variable woff2, latin + latin-ext subsets; SIL OFL 1.1 licenses alongside). The page makes no third-party requests except the signup POST to Supabase.
 - `assets/logo-mark.svg` — the real brand mark, exported directly from Figma (not redrawn).
 - `assets/hero-today-screen.png` — a real screenshot of the app's "Today" screen from the App Page Design file, shown in the hero's phone mockup.
 - Copy ("home admin, sorted.", the feature descriptions) is adapted from the actual brand tagline and app screens rather than invented from scratch.
