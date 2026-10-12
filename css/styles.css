@@ -534,6 +534,9 @@ a { color: inherit; }
   height: 26px;
   display: block;
 }
+/* Same idea as the feature icons: the three-dot families glyph is the
+   squarest and reads smaller than the wide couples/housemates glyphs. */
+.household-icon img[src$="icon-families.svg"] { width: 28px; height: 28px; }
 
 .household-icon-sage { background: var(--color-sage-green); }
 .household-icon-tan { background: var(--color-warm-tan); }
