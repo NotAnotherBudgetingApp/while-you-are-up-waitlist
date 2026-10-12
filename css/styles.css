@@ -467,6 +467,17 @@ a { color: inherit; }
   display: block;
 }
 
+/* The icons are drawn on different grids and have different natural
+   proportions (a bullet list is wide and short, a receipt is tall), so one
+   shared box makes some read bigger than others. These per-icon box sizes
+   even out the drawn area; every viewBox is square, so scaling stays
+   uniform. */
+.feature-icon img[src$="icon-chores.svg"] { width: 28px; height: 28px; }
+.feature-icon img[src$="icon-bills.svg"],
+.feature-icon img[src$="icon-pets.svg"],
+.feature-icon img[src$="icon-household.svg"] { width: 24px; height: 24px; }
+.feature-icon img[src$="icon-points.svg"] { width: 25px; height: 25px; }
+
 .feature-card h3 {
   font-family: var(--font-body);
   font-size: 1rem;
