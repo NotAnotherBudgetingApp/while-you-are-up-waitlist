@@ -473,6 +473,7 @@ a { color: inherit; }
    even out the drawn area; every viewBox is square, so scaling stays
    uniform. */
 .feature-icon img[src$="icon-chores.svg"] { width: 28px; height: 28px; }
+.feature-icon img[src$="icon-supplies.svg"],
 .feature-icon img[src$="icon-bills.svg"],
 .feature-icon img[src$="icon-pets.svg"],
 .feature-icon img[src$="icon-household.svg"] { width: 24px; height: 24px; }

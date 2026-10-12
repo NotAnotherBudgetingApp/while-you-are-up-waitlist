@@ -1,6 +1,5 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Frame">
-<path id="Vector" d="M2.75 7.15L11 3.3L19.25 7.15L11 11L2.75 7.15Z" stroke="#2C3322" stroke-width="1.54" stroke-linejoin="round"/>
-<path id="Vector_2" d="M19.25 7.15V15.4L11 19.25L2.75 15.4V7.15M11 19.25V11" stroke="#2C3322" stroke-width="1.54" stroke-linejoin="round"/>
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="shopping-basket">
+<path id="Vector" d="M15.0002 11.001L14.0002 20.0012M19.0006 11.001L15.0002 4.0008M1.9992 11.001H22.0008M3.49932 11.001L5.09945 18.4012C5.19296 18.8597 5.44432 19.271 5.80979 19.5633C6.17526 19.8557 6.63168 20.0106 7.09961 20.0012H16.9004C17.3683 20.0106 17.8247 19.8557 18.1902 19.5633C18.5557 19.271 18.807 18.8597 18.9006 18.4012L20.6007 11.001M4.4994 15.5011H19.5006M4.99944 11.001L8.99976 4.0008M8.99976 11.001L9.99984 20.0012" stroke="#2C3322" stroke-width="2" stroke-linecap="round"/>
 </g>
 </svg>
