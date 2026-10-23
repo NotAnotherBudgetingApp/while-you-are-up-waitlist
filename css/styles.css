@@ -492,8 +492,8 @@ a { color: inherit; }
    uniform. */
 .feature-icon img[src$="icon-chores.svg"] { width: 28px; height: 28px; }
 .feature-icon img[src$="icon-bills.svg"],
-.feature-icon img[src$="icon-pets.svg"],
-.feature-icon img[src$="icon-household.svg"] { width: 24px; height: 24px; }
+.feature-icon img[src$="icon-pets.svg"] { width: 24px; height: 24px; }
+.feature-icon img[src$="icon-wendy.svg"] { width: 30px; height: 30px; }
 .feature-icon img[src$="icon-points.svg"] { width: 25px; height: 25px; }
 
 .feature-card h3 {
