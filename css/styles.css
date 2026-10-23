@@ -310,30 +310,48 @@ a { color: inherit; }
 }
 
 .iphone-status-bar,
-.iphone-bottom-nav {
+.iphone-bottom {
   position: absolute;
   left: 0;
   width: 100%;
-  display: block;
   z-index: 2;
   pointer-events: none;
 }
 
-.iphone-status-bar { top: 0; }
+.iphone-status-bar { top: 0; display: block; }
+
+.iphone-bottom { bottom: 0; }
+
+/* Wendy's floating button hovers over the screen's bottom-right corner,
+   just above the nav bar. Offsets are percentages of the screen width
+   (margins resolve against width), so it scales with the phone. */
+.iphone-wendy {
+  position: absolute;
+  right: 2.49%;
+  bottom: 100%;
+  margin-bottom: -1.16%;
+  width: 15.92%;
+  height: auto;
+  display: block;
+  /* Soft elevation so it reads as hovering over the content. */
+  filter: drop-shadow(0 0.35em 0.5em rgba(44, 51, 34, 0.2)) drop-shadow(0 0.08em 0.15em rgba(44, 51, 34, 0.22));
+  font-size: 8px;
+}
 
 .iphone-bottom-nav {
-  bottom: 0;
+  display: block;
+  width: 100%;
   /* Padding (not a bottom offset) lifts the pill off the screen's rounded
      corner while the background fills that strip — otherwise scrolling
      content would show through the gap left underneath the nav image. */
   box-sizing: border-box;
-  padding-bottom: 2.5%;
+  padding-bottom: 6.1%;
   background: var(--color-cream-base);
 }
 
 .iphone-content {
   position: absolute;
-  top: 6.6%; /* matches the status bar's proportional height */
+  top: 6.64%; /* matches the status bar's proportional height */
   left: 0;
   width: 100%;
   display: block;
